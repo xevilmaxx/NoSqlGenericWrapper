@@ -39,7 +39,7 @@ Factory Usage with configs in AppSettings.json:
             ....
             }
 
-And here is **AppSetting.json** sample (ensure "Copy if newer if" and place this file in destination project which will use this library):
+And here is **AppSetting.json** sample (ensure "Copy if newer" and place this file in destination project which will use this library):
 
             {
               "DbType": 1,
