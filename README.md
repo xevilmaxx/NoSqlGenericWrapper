@@ -31,3 +31,22 @@ Usage:
                 db.Insert<JsonDeviceConfigs>(cfg);
                 db.SaveChanges();
             }
+
+Factory Usage with configs in AppSettings.json:
+
+            using (var db = DbFactory.GetContext().QuerySession())
+            {
+            ....
+            }
+
+And here is AppSetting.json sample:
+
+            {
+              "DbType": 1,
+              "ConnectionStrings": {
+                "Postgres": "host=127.0.0.1;database=postgres;password=test;username=postgres;",
+                "LiteDb": "Filename=..\\test.db;password=pwd;connection=shared"
+              }
+            }
+            
+ You can also change code a bit in order to supply DbName in settings
