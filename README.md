@@ -1,6 +1,13 @@
 # NoSqlGenericWrapper
 Marten + LiteDb wrapped together
 
+Features:
+* Primitive Async Engine in order to support Asyn for LiteDb and Marten Linq Query
+* LiteDb
+* Marten3
+* Most of basic CRUD operations and queries
+
+
 Usage:
 
 
