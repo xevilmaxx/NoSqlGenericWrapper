@@ -50,3 +50,6 @@ And here is **AppSetting.json** sample (ensure "Copy if newer" and place this fi
             }
             
  You can also change code a bit in order to supply DbName in settings
+ 
+ Heart of this wrapper is located in:
+ https://github.com/xevilmaxx/NoSqlGenericWrapper/tree/main/LibRtDb/GenericNoSql
