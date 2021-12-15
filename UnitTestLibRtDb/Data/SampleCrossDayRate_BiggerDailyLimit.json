@@ -1,0 +1,473 @@
+﻿{
+  "Rates": [
+    {
+      "Exceptions": [],
+      "ParkDaysOrFestivities": [
+        {
+          "Name": "Capodanno",
+          "Year": 0,
+          "Month": 1,
+          "Day": 1
+        }
+      ],
+      "Id": "0",
+      "PaymentModel": 2,
+      "WeekModel": {
+        "Days": [
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 540,
+                    "Amount": "100",
+                    "Interval": 540,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "ParkState": 1
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "100",
+                    "Interval": 60,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Aperto",
+                "Color": "12",
+                "From": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Monday",
+            "InitialFreeMinutes": 15,
+            "MaxDailyRate": "2000",
+            "MaxPrecalculatedDayAmount": "1600"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 540,
+                    "Amount": "100",
+                    "Interval": 540,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "ParkState": 1
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "100",
+                    "Interval": 60,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Aperto",
+                "Color": "12",
+                "From": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Tuesday",
+            "InitialFreeMinutes": 15,
+            "MaxDailyRate": "2000",
+            "MaxPrecalculatedDayAmount": "1600"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 540,
+                    "Amount": "100",
+                    "Interval": 540,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "ParkState": 1
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "100",
+                    "Interval": 60,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Aperto",
+                "Color": "12",
+                "From": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Wednesday",
+            "InitialFreeMinutes": 15,
+            "MaxDailyRate": "2000",
+            "MaxPrecalculatedDayAmount": "1600"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 540,
+                    "Amount": "100",
+                    "Interval": 540,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "ParkState": 1
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "100",
+                    "Interval": 60,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Aperto",
+                "Color": "12",
+                "From": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Thursday",
+            "InitialFreeMinutes": 15,
+            "MaxDailyRate": "2000",
+            "MaxPrecalculatedDayAmount": "1600"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 540,
+                    "Amount": "100",
+                    "Interval": 540,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "ParkState": 1
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "100",
+                    "Interval": 60,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Aperto",
+                "Color": "12",
+                "From": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Friday",
+            "InitialFreeMinutes": 15,
+            "MaxDailyRate": "2000",
+            "MaxPrecalculatedDayAmount": "1600"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 540,
+                    "Amount": "100",
+                    "Interval": 540,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "ParkState": 1
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "100",
+                    "Interval": 60,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Aperto",
+                "Color": "12",
+                "From": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Saturday",
+            "InitialFreeMinutes": 15,
+            "MaxDailyRate": "2000",
+            "MaxPrecalculatedDayAmount": "1600"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 540,
+                    "Amount": "100",
+                    "Interval": 540,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "ParkState": 1
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "100",
+                    "Interval": 60,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Aperto",
+                "Color": "12",
+                "From": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Sunday",
+            "InitialFreeMinutes": 15,
+            "MaxDailyRate": "2000",
+            "MaxPrecalculatedDayAmount": "1600"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 540,
+                    "Amount": "100",
+                    "Interval": 540,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "ParkState": 1
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "100",
+                    "Interval": 60,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Aperto",
+                "Color": "12",
+                "From": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Festivity",
+            "InitialFreeMinutes": 15,
+            "MaxDailyRate": "2000",
+            "MaxPrecalculatedDayAmount": "1600"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 540,
+                    "Amount": "100",
+                    "Interval": 540,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "ParkState": 1
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "100",
+                    "Interval": 60,
+                    "Priority": 0
+                  }
+                ],
+                "Name": "Aperto",
+                "Color": "12",
+                "From": {
+                  "seconds": "21600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "75600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Special",
+            "InitialFreeMinutes": 15,
+            "MaxDailyRate": "2000",
+            "MaxPrecalculatedDayAmount": "1600"
+          }
+        ],
+        "WeekModelId": 2,
+        "WeekModelName": "Modello_Maxym_Test0"
+      }
+    }
+  ]
+}

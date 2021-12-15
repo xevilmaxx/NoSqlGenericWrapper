@@ -1,0 +1,1130 @@
+﻿{
+  "Rates": [
+    {
+      "Exceptions": [],
+      "ParkDaysOrFestivities": [
+        {
+          "Name": "Capodanno",
+          "Year": 0,
+          "Month": 1,
+          "Day": 1
+        },
+        {
+          "Name": "Epifania",
+          "Year": 0,
+          "Month": 1,
+          "Day": 5
+        },
+        {
+          "Name": "Liberazione",
+          "Year": 0,
+          "Month": 4,
+          "Day": 25
+        },
+        {
+          "Name": "Festa del lavoro",
+          "Year": 0,
+          "Month": 5,
+          "Day": 1
+        },
+        {
+          "Name": "Festa della Repubblica",
+          "Year": 0,
+          "Month": 6,
+          "Day": 2
+        },
+        {
+          "Name": "Ferragosto",
+          "Year": 0,
+          "Month": 8,
+          "Day": 15
+        },
+        {
+          "Name": "Tutti i Santi",
+          "Year": 0,
+          "Month": 11,
+          "Day": 1
+        },
+        {
+          "Name": "Immacolata",
+          "Year": 0,
+          "Month": 12,
+          "Day": 8
+        },
+        {
+          "Name": "Natale",
+          "Year": 0,
+          "Month": 12,
+          "Day": 25
+        },
+        {
+          "Name": "Santo Stefano",
+          "Year": 0,
+          "Month": 12,
+          "Day": 26
+        },
+        {
+          "Name": "Pasqua 2017",
+          "Year": 0,
+          "Month": 4,
+          "Day": 16
+        },
+        {
+          "Name": "Pasquetta 2017",
+          "Year": 0,
+          "Month": 4,
+          "Day": 17
+        },
+        {
+          "Name": "Pasqua 2018",
+          "Year": 0,
+          "Month": 4,
+          "Day": 1
+        },
+        {
+          "Name": "Pasquetta 2018",
+          "Year": 0,
+          "Month": 4,
+          "Day": 2
+        },
+        {
+          "Name": "Pasqua 2019",
+          "Year": 0,
+          "Month": 4,
+          "Day": 21
+        },
+        {
+          "Name": "Pasquetta 2019",
+          "Year": 0,
+          "Month": 4,
+          "Day": 22
+        },
+        {
+          "Name": "Pasqua 2020",
+          "Year": 0,
+          "Month": 4,
+          "Day": 12
+        },
+        {
+          "Name": "Pasquetta 2020",
+          "Year": 0,
+          "Month": 4,
+          "Day": 13
+        },
+        {
+          "Name": "Pasqua 2021",
+          "Year": 0,
+          "Month": 4,
+          "Day": 4
+        },
+        {
+          "Name": "Pasquetta 2021",
+          "Year": 0,
+          "Month": 4,
+          "Day": 5
+        },
+        {
+          "Name": "Pasquetta 2022",
+          "Year": 0,
+          "Month": 4,
+          "Day": 18
+        },
+        {
+          "Name": "Pasqua 2023",
+          "Year": 0,
+          "Month": 4,
+          "Day": 9
+        },
+        {
+          "Name": "Pasquetta 2023",
+          "Year": 0,
+          "Month": 4,
+          "Day": 10
+        },
+        {
+          "Name": "Pasqua 2024",
+          "Year": 0,
+          "Month": 3,
+          "Day": 31
+        },
+        {
+          "Name": "Pasqua 2025",
+          "Year": 0,
+          "Month": 4,
+          "Day": 20
+        }
+      ],
+      "Id": "0",
+      "PaymentModel": 1,
+      "WeekModel": {
+        "Days": [
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 15,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 30,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "0",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "30600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Aperto Mattina",
+                "Color": "11",
+                "From": {
+                  "seconds": "30600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "46800",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Pranzo",
+                "Color": "1",
+                "From": {
+                  "seconds": "46800",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "54000",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Aperto Pomeriggio",
+                "Color": "11",
+                "From": {
+                  "seconds": "54000",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "72000",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Sera",
+                "Color": "1",
+                "From": {
+                  "seconds": "72000",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "86400",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Monday",
+            "InitialFreeMinutes": 10,
+            "MaxDailyRate": "10000",
+            "MaxPrecalculatedDayAmount": "6500"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 15,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 30,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "0",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "30600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Aperto Mattina",
+                "Color": "11",
+                "From": {
+                  "seconds": "30600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "46800",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Pranzo",
+                "Color": "1",
+                "From": {
+                  "seconds": "46800",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "54000",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Aperto Pomeriggio",
+                "Color": "11",
+                "From": {
+                  "seconds": "54000",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "72000",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Sera",
+                "Color": "1",
+                "From": {
+                  "seconds": "72000",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "86400",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Tuesday",
+            "InitialFreeMinutes": 10,
+            "MaxDailyRate": "10000",
+            "MaxPrecalculatedDayAmount": "6500"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 15,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 30,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "0",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "30600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Aperto Mattina",
+                "Color": "11",
+                "From": {
+                  "seconds": "30600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "46800",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Pranzo",
+                "Color": "1",
+                "From": {
+                  "seconds": "46800",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "54000",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Aperto Pomeriggio",
+                "Color": "11",
+                "From": {
+                  "seconds": "54000",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "72000",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Sera",
+                "Color": "1",
+                "From": {
+                  "seconds": "72000",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "86400",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Wednesday",
+            "InitialFreeMinutes": 10,
+            "MaxDailyRate": "10000",
+            "MaxPrecalculatedDayAmount": "6500"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 15,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 30,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "0",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "30600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Aperto Mattina",
+                "Color": "11",
+                "From": {
+                  "seconds": "30600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "46800",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Pranzo",
+                "Color": "1",
+                "From": {
+                  "seconds": "46800",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "54000",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Aperto Pomeriggio",
+                "Color": "11",
+                "From": {
+                  "seconds": "54000",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "72000",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Sera",
+                "Color": "1",
+                "From": {
+                  "seconds": "72000",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "86400",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Thursday",
+            "InitialFreeMinutes": 10,
+            "MaxDailyRate": "10000",
+            "MaxPrecalculatedDayAmount": "6500"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 15,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 30,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "0",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "30600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Aperto Mattina",
+                "Color": "11",
+                "From": {
+                  "seconds": "30600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "46800",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Pranzo",
+                "Color": "1",
+                "From": {
+                  "seconds": "46800",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "54000",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Aperto Pomeriggio",
+                "Color": "11",
+                "From": {
+                  "seconds": "54000",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "72000",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Sera",
+                "Color": "1",
+                "From": {
+                  "seconds": "72000",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "86400",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Friday",
+            "InitialFreeMinutes": 10,
+            "MaxDailyRate": "10000",
+            "MaxPrecalculatedDayAmount": "6500"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 15,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 30,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Notte",
+                "Color": "1",
+                "From": {
+                  "seconds": "0",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "30600",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Aperto Mattina",
+                "Color": "11",
+                "From": {
+                  "seconds": "30600",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "46800",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Pranzo",
+                "Color": "1",
+                "From": {
+                  "seconds": "46800",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "54000",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Aperto Pomeriggio",
+                "Color": "11",
+                "From": {
+                  "seconds": "54000",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "72000",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              },
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Chiuso Sera",
+                "Color": "1",
+                "From": {
+                  "seconds": "72000",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "86400",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Saturday",
+            "InitialFreeMinutes": 10,
+            "MaxDailyRate": "10000",
+            "MaxPrecalculatedDayAmount": "6500"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Domenica",
+                "Color": "13",
+                "From": {
+                  "seconds": "0",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "86400",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Sunday",
+            "InitialFreeMinutes": 10,
+            "MaxDailyRate": "0",
+            "MaxPrecalculatedDayAmount": "4800"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Domenica",
+                "Color": "13",
+                "From": {
+                  "seconds": "0",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "86400",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Festivity",
+            "InitialFreeMinutes": 10,
+            "MaxDailyRate": "0",
+            "MaxPrecalculatedDayAmount": "4800"
+          },
+          {
+            "TimeBelts": [
+              {
+                "PaymentRules": [
+                  {
+                    "Minutes": 60,
+                    "Amount": "10",
+                    "Interval": 60,
+                    "Priority": 0
+                  },
+                  {
+                    "Minutes": 60,
+                    "Amount": "200",
+                    "Interval": 60,
+                    "Priority": 1
+                  }
+                ],
+                "Name": "Domenica",
+                "Color": "13",
+                "From": {
+                  "seconds": "0",
+                  "nanos": 0
+                },
+                "To": {
+                  "seconds": "86400",
+                  "nanos": 0
+                },
+                "ParkState": 0
+              }
+            ],
+            "DayNumber": "Special",
+            "InitialFreeMinutes": 10,
+            "MaxDailyRate": "0",
+            "MaxPrecalculatedDayAmount": "4800"
+          }
+        ],
+        "WeekModelId": 1,
+        "WeekModelName": "Modello AeS"
+      }
+    }
+  ]
+}
