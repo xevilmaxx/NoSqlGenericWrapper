@@ -4,7 +4,7 @@ Marten + LiteDb wrapped together
 Features:
 * Primitive Async Engine in order to support Asyn for LiteDb and Marten Linq Query
 * LiteDb
-* Marten3
+* Marten3 (Marten4 is also compatible but it kills RaspberryPI, so i prefered stay with that for now)
 * Most of basic CRUD operations and queries
 
 
@@ -51,6 +51,18 @@ And here is **AppSetting.json** sample (ensure "Copy if newer" and place this fi
             
  You can also change code a bit in order to supply DbName in settings
  
+ ---
+ 
  Heart of this wrapper is located in:
  
  https://github.com/xevilmaxx/NoSqlGenericWrapper/tree/main/LibRtDb/GenericNoSql
+ 
+ ---
+ 
+ Credits:
+ 
+ https://github.com/JasperFx/marten/tree/3.14
+ 
+ https://github.com/mbdavid/LiteDB
+ 
+ https://github.com/mlockett42/litedb-async
