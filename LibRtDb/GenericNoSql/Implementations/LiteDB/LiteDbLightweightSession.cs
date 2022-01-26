@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf.Collections;
+using LibRtDb.CustomExceptions;
 using LibRtDb.GenericNoSql.Interfaces;
 using LiteDB;
 using System;
@@ -7,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LibRtDb.GenericNoSql.Implementations.LiteDB
@@ -65,7 +65,7 @@ namespace LibRtDb.GenericNoSql.Implementations.LiteDB
         {
             return GenericAsyncEngine.Instance.EnqueueAsync(() => Insert(Document));
         }
-        
+
         public void Insert<T>(IEnumerable<T> Document)
         {
             DocumentSession.GetCollection<T>().Insert(Document);
@@ -117,7 +117,7 @@ namespace LibRtDb.GenericNoSql.Implementations.LiteDB
         {
             return GenericAsyncEngine.Instance.EnqueueAsync(() => Update(Document));
         }
-        
+
         public void Update<T>(IEnumerable<T> Document)
         {
             DocumentSession.GetCollection<T>().Update(Document);
@@ -179,7 +179,7 @@ namespace LibRtDb.GenericNoSql.Implementations.LiteDB
         {
             return GenericAsyncEngine.Instance.EnqueueAsync(() => Upsert(Document));
         }
-        
+
         public void Upsert<T>(IEnumerable<T> Document)
         {
             DocumentSession.GetCollection<T>().Upsert(Document);
@@ -198,6 +198,41 @@ namespace LibRtDb.GenericNoSql.Implementations.LiteDB
             return GenericAsyncEngine.Instance.EnqueueAsync(() => Upsert(Document.AsEnumerable()));
         }
 
+        /// <summary>
+        /// Will attempt to recover Id value from some basic field names
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Document"></param>
+        /// <returns></returns>
+        /// <exception cref="CustomNoSqlDbException"></exception>
+        private object GetDocumentIdFieldVal<T>(T Document)
+        {            
+            //The default Grpc Standard, so we mostly will get it like that,
+            //those are also default Id names supported by Marten
+            var propertyInfo = Document.GetType().GetProperty("Id");
+
+            if(propertyInfo == null)
+            {
+                //not found field Id lets search for other possible matches
+                propertyInfo = Document.GetType().GetProperty("id");
+                if (propertyInfo == null)
+                {
+                    //not found field Id lets search for other possible matches
+                    propertyInfo = Document.GetType().GetProperty("ID");
+                }
+            }
+
+            //if is true, means we found our property
+            if (propertyInfo != null)
+            {
+                //so finally get it's value
+                return propertyInfo?.GetValue(Document);
+            }
+            else
+            {
+                throw new CustomNoSqlDbException("No (Id | id | ID) field found in the object");
+            }
+        }
 
         public void Delete<T>(T Document)
         {
@@ -224,7 +259,8 @@ namespace LibRtDb.GenericNoSql.Implementations.LiteDB
             else
             {
 
-                var id = Document.GetType().GetProperty("Id").GetValue(Document);
+                //int he end of the day, all single or in memory deletions will pass through here
+                var id = GetDocumentIdFieldVal(Document);
                 DocumentSession.GetCollection<T>().Delete(new BsonValue(id));
 
             }
@@ -233,7 +269,7 @@ namespace LibRtDb.GenericNoSql.Implementations.LiteDB
         {
             return GenericAsyncEngine.Instance.EnqueueAsync(() => Delete(Document));
         }
-        
+
         public void Delete<T>(IEnumerable<T> Document)
         {
             foreach (var doc in Document)
@@ -255,6 +291,14 @@ namespace LibRtDb.GenericNoSql.Implementations.LiteDB
             return GenericAsyncEngine.Instance.EnqueueAsync(() => Delete(Document.AsEnumerable()));
         }
 
+        public void DeleteWhere<T>(Expression<Func<T, bool>> Expression)
+        {
+            DocumentSession.GetCollection<T>().DeleteMany(Expression);
+        }
+        public Task DeleteWhereAsync<T>(Expression<Func<T, bool>> Expression)
+        {
+            return GenericAsyncEngine.Instance.EnqueueAsync(() => DeleteWhere(Expression));
+        }
 
         public IGenericNoSqlQuariable<T> Query<T>()
         {

@@ -1,11 +1,10 @@
 ﻿using LibRtDb.DTO;
 using LibRtDb.GenericNoSql.Interfaces;
+using LibRtDb.Locking;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading;
 
@@ -31,18 +30,18 @@ namespace LibRtDb.GenericNoSql
                 do
                 {
                     res = GetContext();
-                    if(res == null)
+                    if (res == null)
                     {
                         log.Debug("Will wait a bit before attempting next connection!");
                         Thread.Sleep(5000);
                     }
-                } 
+                }
                 while (res == null);
 
 
                 log.Debug("EnsureDbStarted DONE!");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log.Error(ex);
             }
@@ -50,24 +49,20 @@ namespace LibRtDb.GenericNoSql
 
         public static IGenericNoSql GetContext()
         {
-            bool isLockAcquired = false;
             try
             {
 
-                if(Context == null)
+                if (Context == null)
                 {
-                    //Acquire GLOBAL lock, across all services
-                    //GlobalMutexLocks.MartenDb.WaitOne();
-                    isLockAcquired = true;
 
-                    //log.Trace($"Lock Acquired! {nameof(GlobalMutexLocks.MartenDb)}");
+                    GlobalMutexLocks.MartenDb.AcquireLock();
 
                     //var cfg = GetConfigs();
                     var dbDescription = GetConnectionString();
 
                     log.Debug($"Connection String: {dbDescription.ConnStr}");
 
-                    if(dbDescription.DbType == DbType.MartenPostgres)
+                    if (dbDescription.DbType == DbType.MartenPostgres)
                     {
                         Context = new Implementations.MartenDB.MartenDBContextBuilder()
                         .SetConnectionString(dbDescription.ConnStr)
@@ -83,32 +78,20 @@ namespace LibRtDb.GenericNoSql
                     {
                         log.Error("Unhandled DB Type!");
                     }
-                    
 
-                    if(isLockAcquired == true)
-                    {
-                        //Release GLOBAL mutex, so eventually others can continue
-                        //GlobalMutexLocks.MartenDb.ReleaseMutex();
-                        isLockAcquired = false;
 
-                        //log.Trace($"Lock Released! {nameof(GlobalMutexLocks.MartenDb)}");
-                    }
+                    GlobalMutexLocks.MartenDb.ReleaseLock();
 
                 }
                 return Context;
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log.Error(ex);
-                
-                if(isLockAcquired == true)
-                {
-                    //Anyway ensure to release lock eventually
-                    //GlobalMutexLocks.MartenDb.ReleaseMutex();
-                    //log.Trace($"Lock Released! {nameof(GlobalMutexLocks.MartenDb)}");
-                }
-                
+
+                GlobalMutexLocks.MartenDb.ReleaseLock();
+
                 return null;
             }
         }
@@ -132,7 +115,7 @@ namespace LibRtDb.GenericNoSql
 
                     JObject data = JObject.Parse(File.ReadAllText(jsonSettingsFile, Encoding.UTF8));
 
-                    if(data["DbType"] != null)
+                    if (data["DbType"] != null)
                     {
                         dbType = data["DbType"].Value<int>();
                     }
@@ -141,7 +124,7 @@ namespace LibRtDb.GenericNoSql
                         log.Warn($"DbType is not specified! Will use default one: {dbType}");
                     }
 
-                    if(dbType == DbType.MartenPostgres)
+                    if (dbType == DbType.MartenPostgres)
                     {
                         connStr = data["ConnectionStrings"]["Postgres"].ToString();
                     }
@@ -155,7 +138,7 @@ namespace LibRtDb.GenericNoSql
                 {
 
                     log.Debug("Will try to search in App.config");
-                    
+
                     connStr = ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString;
 
                 }
@@ -172,7 +155,7 @@ namespace LibRtDb.GenericNoSql
                 log.Error(ex);
                 return (0, null);
             }
-            
+
         }
 
     }

@@ -5,12 +5,6 @@ using LibRtDb.DTO.Languages;
 using LibRtDb.DTO.SerialNumbers;
 using LibRtDb.GenericNoSql.Interfaces;
 using Marten;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibRtDb.GenericNoSql.Implementations.MartenDB
 {
@@ -36,10 +30,13 @@ namespace LibRtDb.GenericNoSql.Implementations.MartenDB
                 //add json indexes also
                 // Add a gin index to Company's json data storage
                 //may be commented if performance is poor and you dont need do much readings
+                //_.Schema.For<Transit>().GinIndexJsonData();
+                //_.Schema.For<User>().GinIndexJsonData();
                 _.Schema.For<JsonDeviceConfigs>().GinIndexJsonData();
                 _.Schema.For<DynamicKey>().GinIndexJsonData();
                 _.Schema.For<Event>().GinIndexJsonData();
                 _.Schema.For<LanguageResource>().GinIndexJsonData();
+                _.Schema.For<SerialNumber>().GinIndexJsonData();
 
                 //My custom override for comparing objects not supported by Marten natively (for now alpha-8)
                 //Doable only in Marten >= v4

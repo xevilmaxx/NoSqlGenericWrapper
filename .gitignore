@@ -3,3 +3,8 @@
 ################################################################################
 
 /UnitTestLibRtDb/obj/Debug/net5.0
+/UnitTestLibRtDb/obj
+/LibRtDb/obj
+/LibRtDb/bin/Debug/net5.0
+/.vs
+/UnitTestLibRtDb/bin/Debug/net5.0

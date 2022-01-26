@@ -1,10 +1,6 @@
 ﻿using LibRtDb.GenericNoSql.Interfaces;
 using LiteDB;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LibRtDb.GenericNoSql.Implementations.LiteDB
@@ -13,7 +9,7 @@ namespace LibRtDb.GenericNoSql.Implementations.LiteDB
     {
 
         private ILiteDatabase Context { get; set; }
-        
+
         public LiteDB(ILiteDatabase Context)
         {
             this.Context = Context;
@@ -52,7 +48,7 @@ namespace LibRtDb.GenericNoSql.Implementations.LiteDB
 
         public void Dispose()
         {
-            if(GenericAsyncEngine.Instance != null)
+            if (GenericAsyncEngine.Instance != null)
             {
                 GenericAsyncEngine.Instance.Dispose();
             }

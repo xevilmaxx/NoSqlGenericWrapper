@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LibRtDb.GenericNoSql.Implementations.MartenDB
@@ -61,7 +60,7 @@ namespace LibRtDb.GenericNoSql.Implementations.MartenDB
 
                 DocumentSession.Insert<T>(Document);
 
-            }  
+            }
         }
         public Task InsertAsync<T>(T Document)
         {
@@ -139,7 +138,7 @@ namespace LibRtDb.GenericNoSql.Implementations.MartenDB
 
         public void Upsert<T>(T Document)
         {
-            if(Document is IEnumerable)
+            if (Document is IEnumerable)
             {
 
                 MethodInfo localMethod;
@@ -213,6 +212,7 @@ namespace LibRtDb.GenericNoSql.Implementations.MartenDB
             }
             else
             {
+                //int he end of the day, all single or in memory deletions will pass through here
                 DocumentSession.Delete<T>(Document);
             }
         }
@@ -223,7 +223,12 @@ namespace LibRtDb.GenericNoSql.Implementations.MartenDB
 
         public void Delete<T>(IEnumerable<T> Document)
         {
-            DocumentSession.Delete(Document);
+            foreach (var doc in Document)
+            {
+                Delete(doc);
+            }
+            //won't work
+            //DocumentSession.Delete(Document);
         }
         public Task DeleteAsync<T>(IEnumerable<T> Document)
         {
@@ -239,6 +244,14 @@ namespace LibRtDb.GenericNoSql.Implementations.MartenDB
             return GenericAsyncEngine.Instance.EnqueueAsync(() => Delete(Document.AsEnumerable()));
         }
 
+        public void DeleteWhere<T>(Expression<Func<T, bool>> Expression)
+        {
+            DocumentSession.DeleteWhere(Expression);
+        }
+        public Task DeleteWhereAsync<T>(Expression<Func<T, bool>> Expression)
+        {
+            return GenericAsyncEngine.Instance.EnqueueAsync(() => DeleteWhere(Expression));
+        }
 
         public IGenericNoSqlQuariable<T> Query<T>()
         {

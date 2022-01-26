@@ -5,8 +5,6 @@ using LibRtDb.GenericNoSql.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibRtDb.Services
 {
@@ -18,6 +16,17 @@ namespace LibRtDb.Services
         public DyncamicKeysService DKS { get; private set; } = new DyncamicKeysService();
 
         #region Read
+
+        ///// <summary>
+        ///// Will get Configs of Core
+        ///// <para/>
+        ///// By Device Type, as Id may change from instance to instance
+        ///// </summary>
+        ///// <returns></returns>
+        //public JsonDeviceConfigs GetCoreConfigs()
+        //{
+        //    return GetConfigs((int)DeviceType.CorpiCore).FirstOrDefault();
+        //}
 
         /// <summary>
         /// Returns specific configs based on Id
@@ -90,6 +99,40 @@ namespace LibRtDb.Services
             {
                 log.Error(ex);
                 return new List<JsonDeviceConfigs>();
+            }
+        }
+
+        /// <summary>
+        /// Will return Id representing configs on DB
+        /// <para/>
+        /// So it can be used by LoadConstants()
+        /// </summary>
+        /// <param name="DeviceType"></param>
+        /// <returns></returns>
+        public long GetConfigsIdByFirstType(int DeviceType)
+        {
+            try
+            {
+
+                log.Debug($"GetConfigsIdByFirstType Invoked! DeviceType: {DeviceType}");
+
+                long result = 0;
+                using (var session = DbFactory.GetContext().QuerySession())
+                {
+                    //get somthing, if nothing return new of the config object
+                    result = session.Query<JsonDeviceConfigs>()
+                        .Where(x => x.DeviceType == DeviceType)
+                        .Select(x => x.Id)
+                        .FirstOrDefault();
+                }
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+                return 0;
             }
         }
 
@@ -184,6 +227,82 @@ namespace LibRtDb.Services
             }
         }
 
+        ///// <summary>
+        ///// Gets first available device to use from DB
+        ///// </summary>
+        ///// <param name="DeviceType"></param>
+        ///// <param name="DeviceIdsAlreadyUsed"></param>
+        ///// <returns></returns>
+        //public ClientInfos GetNewAutoManagedPluginConfigs(int DeviceType, List<long> DeviceIdsAlreadyUsed)
+        //{
+
+        //    try
+        //    {
+
+        //        var result = new ClientInfos();
+
+        //        using (var session = DbFactory.GetContext().QuerySession())
+        //        {
+
+        //            //all connecteable devices
+        //            var resDev = (
+        //                    from dev in session.Query<JsonDeviceConfigs>()
+        //                    where dev.DeviceType == DeviceType
+        //                    select dev.Id
+        //                ).ToList();
+
+        //            log.Debug("Already used ids: " + String.Join(", ", DeviceIdsAlreadyUsed.ToArray()));
+
+        //            var unusedDeviceOfThatType = resDev.Where(x => !DeviceIdsAlreadyUsed.Contains(x)).ToList();
+
+        //            long firstUnusedDeviceOfThatType = -1;
+
+        //            if (unusedDeviceOfThatType.Count > 0)
+        //            {
+        //                //cleaning from unneded
+        //                firstUnusedDeviceOfThatType = unusedDeviceOfThatType.Min();
+        //                log.Debug("First unused device id, found in DB: " + firstUnusedDeviceOfThatType);
+
+        //                var resDev1 = (
+        //                    from dev in session.Query<JsonDeviceConfigs>()
+        //                    where dev.Id == firstUnusedDeviceOfThatType
+        //                    select dev
+        //                ).FirstOrDefault();
+
+        //                result.DeviceName = resDev1?.Name;
+        //                result.DeviceType = resDev1.DeviceType;
+
+        //                result.DeviceId = firstUnusedDeviceOfThatType;
+
+        //            }
+        //            else
+        //            {
+
+        //                log.Trace("Will allow create new record on DB!");
+        //                //will set DeviceId, to 0 becouse if none devices of same type retrieved, you can create your own configs
+        //                //so at first tstart with empty DB every microservice will be able to populate it's default keys
+        //                result.DeviceId = 0;
+        //                result.DeviceName = "undefined";
+        //                result.DeviceType = -1;
+
+        //            }
+
+        //            result.IsActive = false;
+        //            result.Port = "-1";
+
+        //        }
+
+        //        return result;
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Debug(ex);
+        //        return null;
+        //    }
+
+        //}
+
         /// <summary>
         /// Get all available Devices
         /// </summary>
@@ -219,6 +338,29 @@ namespace LibRtDb.Services
                 return null;
             }
         }
+
+        /// <summary>
+        /// Gets Local Core GRPC port number from DB
+        /// </summary>
+        /// <returns></returns>
+        //public string GetCoreListeningPort()
+        //{
+        //    try
+        //    {
+
+        //        var coreConfigs = GetCoreConfigs();
+
+        //        string result = GetCoreListeningPort(coreConfigs);
+
+        //        return result;
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Debug(ex);
+        //        return null;
+        //    }
+        //}
 
         #endregion
 
@@ -454,6 +596,69 @@ namespace LibRtDb.Services
             }
         }
 
+        private void ProcessStaticConfigUpsert(IGenericNoSqlLightweightSession session, JsonDeviceConfigs staticConfig, Dictionary<string, dynamic> Values)
+        {
+            foreach (var val in Values)
+            {
+
+                var existentKey = staticConfig.Configs.Where(x => x.Key.Equals(val.Key)).FirstOrDefault();
+                if (existentKey == null)
+                {
+                    //lets add
+                    staticConfig.Configs.Add(new DevConfig()
+                    {
+                        Key = val.Key,
+                        Value = val.Value,
+                        Description = "Generated"
+                    });
+                }
+                else
+                {
+                    //lets change
+                    existentKey.Value = val.Value;
+                }
+
+            }
+
+            session.Upsert(staticConfig);
+        }
+
+        /// <summary>
+        /// Efficiently updates static configs
+        /// </summary>
+        /// <param name="DeviceId"></param>
+        /// <param name="Values"></param>
+        /// <returns></returns>
+        public bool StaticConfigUpsert(int DeviceType, Dictionary<string, dynamic> Values)
+        {
+            try
+            {
+
+                using (var session = DbFactory.GetContext().LightweightSession())
+                {
+
+                    var staticConfig = session.Query<JsonDeviceConfigs>().Where(x => x.DeviceType.Equals(DeviceType)).FirstOrDefault();
+                    if (staticConfig == null)
+                    {
+                        return false;
+                    }
+
+                    ProcessStaticConfigUpsert(session, staticConfig, Values);
+
+                    session.SaveChanges();
+
+                }
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                log.Debug(ex, "SetSpecificKeyValue -> ");
+                return false;
+            }
+        }
+
         /// <summary>
         /// Efficiently updates static configs
         /// </summary>
@@ -474,29 +679,7 @@ namespace LibRtDb.Services
                         return false;
                     }
 
-                    foreach (var val in Values)
-                    {
-
-                        var existentKey = staticConfig.Configs.Where(x => x.Key.Equals(val.Key)).FirstOrDefault();
-                        if (existentKey == null)
-                        {
-                            //lets add
-                            staticConfig.Configs.Add(new DevConfig()
-                            {
-                                Key = val.Key,
-                                Value = val.Value,
-                                Description = "Generated"
-                            });
-                        }
-                        else
-                        {
-                            //lets change
-                            existentKey.Value = val.Value;
-                        }
-
-                    }
-
-                    session.Upsert(staticConfig);
+                    ProcessStaticConfigUpsert(session, staticConfig, Values);
 
                     session.SaveChanges();
 

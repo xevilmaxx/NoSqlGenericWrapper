@@ -1,9 +1,7 @@
 ﻿using Google.Protobuf.Collections;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LibRtDb.GenericNoSql.Interfaces
@@ -95,6 +93,8 @@ namespace LibRtDb.GenericNoSql.Interfaces
         public void Delete<T>(RepeatedField<T> Document);
         public Task DeleteAsync<T>(RepeatedField<T> Document);
 
+        public void DeleteWhere<T>(Expression<Func<T, bool>> Expression);
+        public Task DeleteWhereAsync<T>(Expression<Func<T, bool>> Expression);
 
         public void SaveChanges();
         public Task SaveChangesAsync();

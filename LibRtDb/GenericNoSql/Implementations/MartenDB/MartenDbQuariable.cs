@@ -1,5 +1,4 @@
-﻿using LibRtDb.GenericNoSql.Implementations.LiteDB;
-using LibRtDb.GenericNoSql.Interfaces;
+﻿using LibRtDb.GenericNoSql.Interfaces;
 using LiteDB;
 using Marten;
 using Marten.Linq;
@@ -7,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LibRtDb.GenericNoSql.Implementations.MartenDB
@@ -101,7 +99,7 @@ namespace LibRtDb.GenericNoSql.Implementations.MartenDB
         {
             return GenericAsyncEngine.Instance.EnqueueAsync(() => ToList());
         }
-        
+
         public T First()
         {
             T res = query.First();

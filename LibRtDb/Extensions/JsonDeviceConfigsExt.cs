@@ -1,9 +1,7 @@
 ﻿using LibRtDb.DTO.DeviceConfigs;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Net;
 
 namespace LibRtDb.Extensions
 {
@@ -54,7 +52,11 @@ namespace LibRtDb.Extensions
                 {
 
                     //return same object if its already of correct type
-                    if (keyN.Value is T variable) return variable;
+                    if (keyN.Value is T variable)
+                    {
+                        log.Trace($"[{KeyName} : {keyN.Value}] is already correct type");
+                        return variable;
+                    }
 
 
                     //Handling Nullable types i.e, int?, double?, bool? .. etc
@@ -73,7 +75,7 @@ namespace LibRtDb.Extensions
                             log.Trace($"[{KeyName} : {keyN.Value}] will be simply casted to: {typeof(T).FullName}");
                             //simply perform a basic cast
                             result = (T)keyN.Value;
-                        }                        
+                        }
                     }
                     //Normal Type
                     else

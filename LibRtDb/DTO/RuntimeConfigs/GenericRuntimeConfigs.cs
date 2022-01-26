@@ -1,4 +1,5 @@
-﻿using LibRtDb.DTO.DeviceConfigs;
+﻿using LibRtDb.Annotations;
+using LibRtDb.DTO.DeviceConfigs;
 using LibRtDb.DTO.DynamicKeys;
 using LibRtDb.Services;
 using Newtonsoft.Json.Linq;
@@ -6,8 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibRtDb.DTO.RuntimeConfigs
 {
@@ -32,41 +31,43 @@ namespace LibRtDb.DTO.RuntimeConfigs
             PropertyInfo[] properties = T.GetProperties();
             foreach (PropertyInfo property in properties)
             {
+                //will get Attribute associated to property if there is any
+                //we suppose to have at most 1 attribute for now
+                var annotations = property.GetCustomAttribute<MaxCfgAttribute>();
 
-                var annotations = property?
-                    .CustomAttributes?
-                    .FirstOrDefault()?
-                    .NamedArguments?
-                    .ToList();
+                string nameOnDb = null;
+                string description = "Auto_Generated";
+                bool isDynamicKey = false;
 
-                var nameOnDb = annotations?.Where(x => x.MemberName.Equals("Name")).FirstOrDefault().TypedValue.Value?.ToString();
-                //becouse we dont want eventual errors of programmer, name cannot be empty!
-                if(string.IsNullOrEmpty(nameOnDb) || string.IsNullOrWhiteSpace(nameOnDb))
+                if (annotations != null)
                 {
-                    if(nameOnDb != null) { nameOnDb = null; }
+                    //we have some annotations
+
+                    if (annotations.IsIgnorable == true)
+                    {
+                        //we dont need to store it
+                        continue;
+                    }
+
+                    //IsNullOrWhiteSpace is valid also for string like that: ""
+                    if (string.IsNullOrWhiteSpace(annotations.Name) == false)
+                    {
+                        nameOnDb = annotations.Name;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(annotations.Description) == false)
+                    {
+                        description = annotations.Description;
+                    }
+
+                    if (annotations.IsDynamicKey == true)
+                    {
+                        isDynamicKey = true;
+                    }
+
                 }
 
-                var description = annotations?.
-                    Where(x => x.MemberName.Equals("Description")).FirstOrDefault().TypedValue.Value?.ToString()
-                    ??
-                    "Auto_Generated"
-                    ;
-
-                //Write always at least if its explicitly not required
-                bool isNeedWrite  = (bool?)annotations?.
-                    Where(x => x.MemberName.Equals("AutoGenerateField")).FirstOrDefault().TypedValue.Value
-                    ??
-                    true
-                    ;
-
-                //dont write it to DB, just skip
-                if (isNeedWrite == false)
-                {
-                    continue;
-                }
-
-                var dynProp = annotations?.Where(x => x.MemberName.Equals("GroupName")).FirstOrDefault().TypedValue.Value?.ToString();
-                if(dynProp != null && dynProp.Equals("DYNAMIC"))
+                if (isDynamicKey == true)
                 {
                     resultDynamic.Add(new DynamicKey()
                     {
@@ -88,7 +89,88 @@ namespace LibRtDb.DTO.RuntimeConfigs
                 }
 
             }
-            return new GetConfigsResultDTO() {
+
+            //return final result
+            return new GetConfigsResultDTO()
+            {
+                StaticConfigs = resultStatic,
+                DynamicKeys = resultDynamic
+            };
+
+        }
+
+        /// <summary>
+        /// Collects all Current class properties into special structure
+        /// Considers data annotaions, but it should be null safe
+        /// </summary>
+        /// <returns></returns>
+        public static GetConfigsResultDTO GetConfigs_DEPRECATED(Type T, GetConfigsDTO data)
+        {
+            var resultStatic = new List<DevConfig>();
+            var resultDynamic = new List<DynamicKey>();
+
+            //Cycle on all properties of configuration class
+            PropertyInfo[] properties = T.GetProperties();
+            foreach (PropertyInfo property in properties)
+            {
+
+                var annotations = property?
+                    .CustomAttributes?
+                    .FirstOrDefault()?
+                    .NamedArguments?
+                    .ToList();
+
+                var nameOnDb = annotations?.Where(x => x.MemberName.Equals("Name")).FirstOrDefault().TypedValue.Value?.ToString();
+                //becouse we dont want eventual errors of programmer, name cannot be empty!
+                if (string.IsNullOrEmpty(nameOnDb) || string.IsNullOrWhiteSpace(nameOnDb))
+                {
+                    if (nameOnDb != null) { nameOnDb = null; }
+                }
+
+                var description = annotations?.
+                    Where(x => x.MemberName.Equals("Description")).FirstOrDefault().TypedValue.Value?.ToString()
+                    ??
+                    "Auto_Generated"
+                    ;
+
+                //Write always at least if its explicitly not required
+                bool isNeedWrite = (bool?)annotations?.
+                    Where(x => x.MemberName.Equals("AutoGenerateField")).FirstOrDefault().TypedValue.Value
+                    ??
+                    true
+                    ;
+
+                //dont write it to DB, just skip
+                if (isNeedWrite == false)
+                {
+                    continue;
+                }
+
+                var dynProp = annotations?.Where(x => x.MemberName.Equals("GroupName")).FirstOrDefault().TypedValue.Value?.ToString();
+                if (dynProp != null && dynProp.Equals("DYNAMIC"))
+                {
+                    resultDynamic.Add(new DynamicKey()
+                    {
+                        DeviceId = data.DeviceId,
+                        DeviceType = data.DeviceType,
+                        Key = nameOnDb ?? property.Name,
+                        Value = property.GetValue(property),
+                        Description = description
+                    });
+                }
+                else
+                {
+                    resultStatic.Add(new DevConfig()
+                    {
+                        Key = nameOnDb ?? property.Name,
+                        Value = property.GetValue(property),
+                        Description = description
+                    });
+                }
+
+            }
+            return new GetConfigsResultDTO()
+            {
                 StaticConfigs = resultStatic,
                 DynamicKeys = resultDynamic
             };
@@ -111,7 +193,7 @@ namespace LibRtDb.DTO.RuntimeConfigs
 
                 if (log.IsTraceEnabled)
                 {
-                    foreach(var acfg in freshAutogenConfigs.StaticConfigs)
+                    foreach (var acfg in freshAutogenConfigs.StaticConfigs)
                     {
                         log.Trace($"Fresh Static conf: [{acfg.Key} -> {acfg.Value}]");
                     }
@@ -192,13 +274,14 @@ namespace LibRtDb.DTO.RuntimeConfigs
                 freshAutogenConfigs = GetConfigs(T, data);
 
                 //compose basic configuration based on default values
-                var basicConfigs = new JsonDeviceConfigs() {
-                            Id = data.DeviceId,
-                            DeviceType = data.DeviceType,
-                            Name = data.Name,
-                            Description = data.Description,
-                            Configs = freshAutogenConfigs.StaticConfigs
-                        };
+                var basicConfigs = new JsonDeviceConfigs()
+                {
+                    Id = data.DeviceId,
+                    DeviceType = data.DeviceType,
+                    Name = data.Name,
+                    Description = data.Description,
+                    Configs = freshAutogenConfigs.StaticConfigs
+                };
 
                 new FileConfigsService().SetConfigs(basicConfigs, originalFile);
 

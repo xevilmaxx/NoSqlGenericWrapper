@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LibRtDb.GenericNoSql.Interfaces
@@ -35,7 +33,7 @@ namespace LibRtDb.GenericNoSql.Interfaces
 
         public IEnumerable<K> SelectMany<K>(Func<T, IEnumerable<K>> selector);
         public Task<IEnumerable<K>> SelectManyAsync<K>(Func<T, IEnumerable<K>> selector);
-        
+
         public IEnumerable<TResult> SelectMany<TCollection, TResult>(Func<T, IEnumerable<TCollection>> collectionSelector, Func<T, TCollection, TResult> resultSelector);
         public Task<IEnumerable<TResult>> SelectManyAsync<TCollection, TResult>(Func<T, IEnumerable<TCollection>> collectionSelector, Func<T, TCollection, TResult> resultSelector);
 

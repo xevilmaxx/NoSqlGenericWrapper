@@ -1,11 +1,4 @@
-﻿using LibRtDb.DTO.DeviceConfigs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibRtDb.Extensions.Linq.MyEquals
+﻿namespace LibRtDb.Extensions.Linq.MyEquals
 {
     public static class CustomExtensions
     {

@@ -1,12 +1,6 @@
 ﻿using LibRtDb.GenericNoSql.Interfaces;
 using LiteDB;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace LibRtDb.GenericNoSql.Implementations.LiteDB
 {
@@ -28,7 +22,7 @@ namespace LibRtDb.GenericNoSql.Implementations.LiteDB
                 //replace DbName with supplied one
                 ConnString = DbNameRegex.Replace(ConnString, $"\\{DbName}.db;");
             }
-            
+
             var context = new LiteDatabase(ConnString);
             return new LiteDB(context);
 

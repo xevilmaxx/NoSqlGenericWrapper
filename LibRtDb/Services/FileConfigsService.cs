@@ -2,11 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibRtDb.Services
 {
@@ -20,12 +16,12 @@ namespace LibRtDb.Services
         /// </summary>
         /// <param name="DeviceId"></param>
         /// <returns></returns>
-        public (JsonDeviceConfigs configs, JObject originalFile) GetConfigs(long DeviceId)
+        public (JsonDeviceConfigs configs, JObject originalFile) GetConfigs(int DeviceType)
         {
             try
             {
 
-                log.Debug($"GetConfigs Invoked! DevceId: {DeviceId}");
+                log.Debug($"GetConfigs Invoked! DevceId: {DeviceType}");
 
                 JsonDeviceConfigs result = null;
 
@@ -76,7 +72,7 @@ namespace LibRtDb.Services
                 var origCfg = originalFile["Config"];
                 var newCfg = JToken.FromObject(Configs);
 
-                if(JToken.DeepEquals(origCfg, newCfg) == false)
+                if (JToken.DeepEquals(origCfg, newCfg) == false)
                 {
                     //persist back to disk
                     string json = JsonConvert.SerializeObject(originalFile, Formatting.Indented);
